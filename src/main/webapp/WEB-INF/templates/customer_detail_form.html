@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Detail Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .btn {
+            transition: all .5s ease;
+            width: 30%;
+            border-radius: 30px;
+            color:#008080;
+            font-weight: 600;
+            background-color: #fff;
+            border: 1px solid #008080;
+            margin-top: 1.5em;
+            margin-bottom: 1em;
+        }
+        .btn:hover, .btn:focus {
+            background-color: #008080;
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <h3>MyCafe</h3>
+
+        <!--/*@thymesVar id="customer" type="com.mycafe.model.Customer"*/-->
+        <form th:action="@{/customer/details}" method="post" th:object="${customer}">
+            <div class="col-lg-4">
+                <h4>Customer Detail</h4>
+                <div class="form-group">
+                    <label for="fullname">Full Name: </label>
+                    <input id="fullname" th:errorclass="is-invalid" class="form-control" type="text" placeholder="mandatory. 10 - 30 characters long" th:field="*{fullName}">
+                    <p th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" th:errorclass="invalid-feedback"></p>
+                </div>
+                <div class="form-group">
+                    <label for="age">Age: </label>
+                    <input id="age" th:errorclass="is-invalid" class="form-control" type="number" placeholder="mandatory. range 1 - 100" th:field="*{age}">
+                    <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}" th:errorclass="invalid-feedback"></p>
+                </div>
+                <div class="form-group">
+                    <label for="address">Shipping address: </label>
+                    <textarea id="address" placeholder="mandatory. 20 - 100 characters" rows="4" cols="53" th:field="*{shippingAddress}"></textarea>
+                </div>
+                <div class="form-group">
+                    <p>Have Gold Membership?</p>
+                    <input type="radio" value="true" th:field="*{hasGoldMembership}" />
+                    <label th:for="${#ids.prev('hasGoldMembership')}">Yes</label><br>
+
+                    <input type="radio" value="false" th:field="*{hasGoldMembership}" />
+                    <label th:for="${#ids.prev('hasGoldMembership')}">No</label><br>
+                </div>
+
+                <input class="btn" type="submit" value="Proceed">
+                <input class="btn" type="reset" value="Reset">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
