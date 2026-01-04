@@ -13,6 +13,7 @@
 
     <context:component-scan base-package="com.mycafe" />
     <mvc:annotation-driven />
+    <mvc:resources mapping="/images/**" location="/resources/images/" />
 
     <bean id="templateResolver" class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
         <property name="prefix" value="/WEB-INF/templates/"/>

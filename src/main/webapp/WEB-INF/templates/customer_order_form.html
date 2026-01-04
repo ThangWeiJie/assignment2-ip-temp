@@ -1,10 +1,134 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Order page</title>
+    <title>Customer Order</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .tbl{
+            width: 100%;
+            color:#f8f9fa;
+            font-weight: 600;
+            background-color: #505050;
+            border: 1px solid #008080;
+            margin-top: 1.5em;
+            margin-bottom: 1em;
+        }
+
+        .btn{
+            transition: all .5s ease;
+            width: 30%;
+            border-radius: 30px;
+            color:#008080;
+            font-weight: 600;
+            background-color: #fff;
+            border: 1px solid #008080;
+            margin-top: 1.5em;
+            margin-bottom: 1em;
+        }
+        .btn:hover, .btn:focus{
+            background-color: #008080;
+            color:#fff;
+        }
+    </style>
 </head>
 <body>
-    <h1>WIP</h1>
+<div class="container">
+
+    <!--/*@thymesVar id="orderForm" type="com.mycafe.model.OrderForm"*/-->
+    <form th:action="@{/customer/order}"
+          th:object="${orderForm}"
+          method="post">
+
+        <h3>MyCafe</h3>
+        <h5>Complete Your Order</h5>
+
+        <table class="table table-dark tbl">
+
+            <!-- SET 1 -->
+            <tr>
+                <td>
+                    <img th:src="@{/images/hashbrown.jpg}" width="356" height="263" alt="hashbrown">
+                </td>
+                <td>
+                    <input type="checkbox" th:field="*{set1.selected}"/>
+                    <strong>Set 1: Hashbrown with drink</strong><br>
+
+                    <input type="hidden" th:field="*{set1.mealSet}"/>
+
+                    Drink:
+                    <select th:field="*{set1.drink}">
+                        <option value="">Select drink</option>
+                        <option value="coffee">Coffee</option>
+                        <option value="milo">Milo</option>
+                    </select>
+                    <div th:errors="*{set1.drink}" class="text-danger"></div>
+
+                    <br><br>
+
+                    Quantity:
+                    <input type="number"
+                           th:field="*{set1.quantity}"
+                           min="0" max="20"/>
+
+                    <div th:if="${#fields.hasErrors('set1.quantity')}"
+                         th:errors="*{set1.quantity}">
+                    </div>
+
+                    <div>
+                        Price/Set (Set 1 with): <br>
+                        Coffee: $10.00 <br>
+                        Milo: $13.00
+                    </div>
+                    <br>
+                </td>
+            </tr>
+
+            <!-- SET 2 -->
+            <tr>
+                <td>
+                    <img th:src="@{/images/hotcakes.jpg}" width="356" height="263" alt="hotcakes">
+                </td>
+                <td>
+                    <input type="checkbox" th:field="*{set2.selected}"/>
+                    <strong>Set 2: Hot Pancakes with drink</strong><br>
+
+                    <input type="hidden" th:field="*{set2.mealSet}"/>
+
+                    Drink:
+                    <select th:field="*{set2.drink}">
+                        <option value="">Select drink</option>
+                        <option value="coffee">Coffee</option>
+                        <option value="milo">Milo</option>
+                        <option value="lemon tea">Lemon Tea</option>
+                    </select>
+                    <div th:errors="*{set2.drink}" class="text-danger"></div>
+
+                    <br><br>
+
+                    Quantity:
+                    <input type="number"
+                           th:field="*{set2.quantity}"
+                           min="0" max="20"/>
+
+                    <div th:if="${#fields.hasErrors('set2.quantity')}"
+                         th:errors="*{set2.quantity}"></div>
+
+                    <div>
+                        Price/Set (Set 2 with): <br>
+                        Coffee: $11.00 <br>
+                        Milo: $15.00
+                        Lemon Tea: $12.00
+                    </div>
+                </td>
+            </tr>
+
+        </table>
+
+        <input type="submit" class="btn" value="Order"/>
+        <input type="reset" class="btn" value="Reset"/>
+
+    </form>
+</div>
 </body>
 </html>

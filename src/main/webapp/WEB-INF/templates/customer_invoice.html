@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .container-fluid .info {
+            margin-bottom: 1rem;
+        }
+
+        .container-fluid .info .value {
+            margin-bottom: 1rem;
+            color: red;
+        }
+
+        .container-fluid .info p {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <h3>MyCafe</h3>
+        <h5>Invoice</h5>
+
+        <div class="info">
+            <p>Customer Name: <span class="value" th:text="${session.customer.fullName}"></span></p>
+        </div>
+
+        <div class="info">
+            <p>Amount Paid: $<span class="value" th:text="${#numbers.formatDecimal(session.orderForm.amountToPay, 1, 2)}"></span> </p>
+        </div>
+
+        <div class="info">
+            <p>Payment Method: <span class="value" th:text="${session.customer.paymentMethod}"></span></p>
+        </div>
+
+        <div class="info">
+            <p>Shipping Address: <span class="value" th:text="${session.customer.shippingAddress}"></span></p>
+        </div>
+    </div>
+</body>
+</html>

@@ -7,7 +7,7 @@ public class Customer {
     @Size(min = 10, max = 30)
     private String fullName;
 
-    @NotEmpty(message = "Age cannot be empty.")
+    @NotNull(message = "Age cannot be empty.")
     @Min(1)
     @Max(100)
     private Integer age;
@@ -18,13 +18,16 @@ public class Customer {
 
     private boolean hasGoldMembership;
 
+    private String paymentMethod;
+
     public Customer() {}
 
-    public Customer(String fullName, int age, String shippingAddress, boolean hasGoldMembership) {
+    public Customer(String fullName, int age, String shippingAddress, boolean hasGoldMembership, String paymentMethod) {
         this.fullName = fullName;
         this.age = age;
         this.shippingAddress = shippingAddress;
         this.hasGoldMembership = hasGoldMembership;
+        this.paymentMethod = paymentMethod;
     }
 
     public String getFullName() {
@@ -37,7 +40,7 @@ public class Customer {
     public Integer getAge() {
         return age;
     }
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
@@ -53,5 +56,12 @@ public class Customer {
     }
     public void setHasGoldMembership(boolean hasGoldMembership) {
         this.hasGoldMembership = hasGoldMembership;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 }
