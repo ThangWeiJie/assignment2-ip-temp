@@ -1,1 +1,18 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/IqqrnTJs)
+# Prerequisites
+
+This project uses the following versions:
+
+- Java Development Kit (JDK) 21
+- Tomcat 9.0.111
+
+# How to Run
+
+Deploy the war file inside target to the Tomcat server, start the server and it should open on localhost:8080.
+
+# URL List
+
+- /mycafe/ : Root context path
+- /mycafe/customer/details: Form to fill in customer details
+- /mycafe/customer/order: Page to do the ordering
+- /mycafe/customer/payment: Page to review purchase information and perform payment
+- /mycafe/customer/invoice: Invoice page displaying name, amount, payment method and address
